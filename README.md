@@ -1,3 +1,8 @@
+# Interface Editor
+In this interface user can add more fields , delete any field, edit field name,change required and define a type like `string`, `number` `boolean` and `object` to the field .   
+
+
+ 
 # Instructions 
 
 ## Updatin the field
