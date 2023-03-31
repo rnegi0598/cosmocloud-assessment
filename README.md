@@ -1,7 +1,7 @@
 # Interface Editor
 In this interface user can add more fields , delete any field, edit field name,change required and define a type like `string`, `number` `boolean` and `object` to the field .   
  
- ## [App Deployment Click Here](https://cosmocloud-assessment.vercel.app/)   
+ ## [App Deployment](https://cosmocloud-assessment.vercel.app/)   
 
 
 # Instructions 
