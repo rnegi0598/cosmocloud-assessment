@@ -32,6 +32,7 @@ export const reducer=(state,action)=>{
             requiredData.field=field;
             requiredData.type=type;
             requiredData.required=required;
+            requiredData.children=type==="object"?requiredData.children||[]:null;
             return {
                 ...state,
                 interfaceData:data,
@@ -42,6 +43,7 @@ export const reducer=(state,action)=>{
         case ACTIONS.ADD_DATA:{
             
             let id=action.id;
+            
             const data=state.interfaceData;
             let requiredData=data;
             //find the object with given ind

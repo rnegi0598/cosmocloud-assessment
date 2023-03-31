@@ -1,11 +1,79 @@
-.nonObject{
-    width:738px;
+.nonObject {
+    width: 738px;
     margin-left: auto;
-    border: 1px solid black;
+    border-bottom: 1px solid gray;
+    border-left: 1px solid gray;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 5px;
-    padding: 5px;
-    
+    padding: 10px;
+    position: relative;
+    transition: 900ms background-color ease;
+
+    .indexOfItem {
+        position: absolute;
+        left: -20px;
+        color: gray;
+    }
+    .left {
+        
+        input,
+        select,
+        option {
+            outline: none;
+            border: none;
+            background-color: transparent;
+            font-size: 1rem;
+            color: #303030;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        input{
+            font-size: 1.2rem;
+            cursor: text;
+        }
+        select{
+           background-color:#D0D0D0;
+           padding: 4px 10px;
+        }
+      
+    }
+
+    .right {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        
+        .add,
+        .delete,
+        .submit {
+            border: 1px solid gray;
+            border-radius: 5px;
+            background-color: #e8e8e8;
+            cursor: pointer;
+            transition: 800ms background-color ease, 1000ms color ease;
+            display: flex;
+            justify-items: center;
+            align-items: center;
+            &:hover {
+                background-color: #606060;
+                color: #e8e8e8;
+            }
+            & * {
+                font-size: 2rem;
+            }
+        }
+        .submit {
+            color: green;
+        }
+        .checkboxInput {
+            align-self: flex-end;
+        }
+        .formControlLabel {
+            font-size: 1.1rem;
+            color: #303030;
+            font-weight: bold;
+        }
+    }
 }

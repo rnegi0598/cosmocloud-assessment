@@ -5,15 +5,17 @@ import NonObjectItem from '../nonObjectComponent/NonObjectItem';
 import { InterfaceContext } from '../../context/InterfaceContextComponent';
 import { useContext } from 'react';
 import AddIcon from "@mui/icons-material/Add";
-
 const Interface = () => {
-    const {interfaceData}=useContext(InterfaceContext);
+    const {interfaceData,addData}=useContext(InterfaceContext);
     // console.log(interfaceData);
+    const addHandler=()=>{
+      addData("");
+    }
   return (
-    <div>
+    <div className='interfaceWrapper'>
         <div className='rootObject'>
         <p>Field name and type</p>
-        <button>
+        <button onClick={addHandler}>
           <AddIcon />
         </button>
       </div>
