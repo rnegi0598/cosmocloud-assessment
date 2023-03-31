@@ -1,15 +1,13 @@
-import './styles/App.scss';
-import { InterfaceContextComponent } from './context/InterfaceContextComponent';
-import Interface from './components/interfaceComponent/Interface';
+import "./styles/App.scss";
+import { InterfaceProvider } from "./context/InterfaceProvider";
+import Interface from "./components/interfaceComponent/Interface";
 
 function App() {
-  
- 
   return (
     <div className="App">
-      <InterfaceContextComponent>
-        <Interface/>
-      </InterfaceContextComponent>
+      <InterfaceProvider>
+        <Interface />
+      </InterfaceProvider>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-.nonObject {
+.nonObjectWrapper {
     width: 738px;
     margin-left: auto;
     border-bottom: 1px solid gray;
@@ -17,7 +17,6 @@
         color: gray;
     }
     .left {
-        
         input,
         select,
         option {
@@ -29,22 +28,21 @@
             font-weight: bold;
             cursor: pointer;
         }
-        input{
+        input {
             font-size: 1.2rem;
             cursor: text;
         }
-        select{
-           background-color:#D0D0D0;
-           padding: 4px 10px;
+        select {
+            background-color: #d0d0d0;
+            padding: 4px 10px;
         }
-      
     }
 
     .right {
         display: flex;
         align-items: center;
         gap: 15px;
-        
+
         .add,
         .delete,
         .submit {

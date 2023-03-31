@@ -1,46 +1,48 @@
 import React, { useState, useContext } from "react";
+import { InterfaceContext } from "../../context/InterfaceProvider";
+//styles
 import "./NonObjectItem.scss";
+// mui icons
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import DoneIcon from "@mui/icons-material/Done";
-import { InterfaceContext } from "../../context/InterfaceContextComponent";
 import Switch from "@mui/material/Switch";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { Typography } from "@mui/material";
 
 const NonObjectItem = ({ item }) => {
+
   const { id, field, type, required } = item;
-  // const [editMode, setEditMode] = useState(false);
   const [fieldInput, setField] = useState(field);
   const [menuInput, setMenu] = useState(type);
   const [checkboxInput, setCheckBox] = useState(required);
-  const { updateData, addData, deleteData, currentEdit, setCurrentEdit } =
-    useContext(InterfaceContext);
- 
+  const { updateData, addData, deleteData, currentEdit, setCurrentEdit } = useContext(InterfaceContext);
+
   const clickHandler = (e) => {
     setCurrentEdit(id);
   };
+
   const submitHandler = (e) => {
     e.stopPropagation();
     updateData(id, fieldInput, menuInput, checkboxInput);
     setCurrentEdit("");
   };
+
   const deleteHandler = (e) => {
     e.stopPropagation();
     deleteData(id);
   };
+  
   const addHandler = (e) => {
     e.stopPropagation();
     addData(id);
   };
+
   return (
     <div
-      className="nonObject"
-      style={{
-        width: `${718 - id.length * 30}px`,
-        backgroundColor: `${currentEdit === id ? "#C0C0C0" : "#E0E0E0"}`,
-      }}
+      className="nonObjectWrapper"
+      style={{ width: `${718 - id.length * 30}px`, backgroundColor: `${currentEdit === id ? "#C0C0C0" : "#E0E0E0"}`,}}
       onClick={clickHandler}
     >
       <div className="left">
@@ -50,7 +52,6 @@ const NonObjectItem = ({ item }) => {
         <span className="textInput">
           <input
             id={id}
-            
             type="text"
             value={fieldInput}
             onChange={(e) => {
@@ -62,10 +63,11 @@ const NonObjectItem = ({ item }) => {
             disabled={currentEdit === id ? false : true}
             onInput={(e) => {
               e.target.style.width =
-                e.target.value.length === 0 ? "50px" : 8*e.target.value.length+20+"px";
-                console.log(e.target.size);
+                e.target.value.length === 0
+                  ? "50px"
+                  : 8 * e.target.value.length + 20 + "px";
             }}
-           style={{width:`${fieldInput.length*8+40}px`}}
+            style={{ width: `${fieldInput.length * 8 + 40}px` }}
           />
         </span>
         <span className="dropdownMenu">
