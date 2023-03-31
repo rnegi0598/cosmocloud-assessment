@@ -62,10 +62,7 @@ const NonObjectItem = ({ item }) => {
             }}
             disabled={currentEdit === id ? false : true}
             onInput={(e) => {
-              e.target.style.width =
-                e.target.value.length === 0
-                  ? "50px"
-                  : 8 * e.target.value.length + 20 + "px";
+              e.target.style.width = e.target.value.length === 0 ? "50px" : 9 * e.target.value.length + 20 + "px";
             }}
             style={{ width: `${fieldInput.length * 8 + 40}px` }}
           />
