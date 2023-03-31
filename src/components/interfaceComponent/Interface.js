@@ -8,6 +8,7 @@ import AddIcon from "@mui/icons-material/Add";
 
 const Interface = () => {
     const {interfaceData}=useContext(InterfaceContext);
+    // console.log(interfaceData);
   return (
     <div>
         <div className='rootObject'>

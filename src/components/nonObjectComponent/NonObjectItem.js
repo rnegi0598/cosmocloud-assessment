@@ -11,25 +11,31 @@ const NonObjectItem = ({ item }) => {
   const [fieldInput, setField] = useState(field);
   const [menuInput, setMenu] = useState(type);
   const [checkboxInput, setCheckBox] = useState(required);
-  const {updateData } = useContext(InterfaceContext);
+  const {updateData,addData ,deleteData,currentEdit,setCurrentEdit} = useContext(InterfaceContext);
 
   const clickHandler = (e) => {
     // console.log('clicked container div');
-    setEditMode(true);
+    // setEditMode(true);
+    setCurrentEdit(id);
+
   };
   const submitHandler = (e) => {
     e.stopPropagation();
     // console.log('clicked  submit');
     updateData(id, fieldInput, menuInput, checkboxInput);
-    setEditMode(false);
+    // setEditMode(false);
+    setCurrentEdit("");
   };
   const deleteHandler = (e) => {
     e.stopPropagation();
     console.log("clicked  delete");
+    deleteData(id);
   };
   const addHandler = (e) => {
     e.stopPropagation();
     console.log("clicked  add");
+    addData(id);
+    
   };
   return (
     <div
@@ -47,7 +53,7 @@ const NonObjectItem = ({ item }) => {
               setField(e.target.value);
             }}
             onClick={(e)=>{e.target.select()}}
-            disabled={!editMode}
+            disabled={currentEdit===id?false:true}
           />
         </span>
         <span
@@ -59,7 +65,7 @@ const NonObjectItem = ({ item }) => {
             onChange={(e) => {
               setMenu(e.target.value);
             }}
-            disabled={!editMode}
+            disabled={currentEdit===id?false:true}
           >
             <option value="string">STRING</option>
             <option value="integer">NUMBER</option>
@@ -70,7 +76,7 @@ const NonObjectItem = ({ item }) => {
       </div>
       <div
         className="right"
-        style={{ visibility: `${editMode ? "visible" : "hidden"}` }}
+        style={{ visibility: `${currentEdit===id ? "visible" : "hidden"}` }}
       >
         <span className="checkboxInput">
           <input
@@ -81,7 +87,7 @@ const NonObjectItem = ({ item }) => {
             }}
           />
         </span>
-        {editMode ? (
+        {currentEdit===id ? (
           <span className="submit" onClick={submitHandler}>
             <DoneIcon />
           </span>
