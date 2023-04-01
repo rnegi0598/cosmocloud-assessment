@@ -27,6 +27,7 @@ const NonObjectItem = ({ item }) => {
     e.stopPropagation();
     updateData(id, fieldInput, menuInput, checkboxInput);
     setCurrentEdit("");
+    console.log('Updated data ',{fieldName:fieldInput,fieldType:menuInput,required:checkboxInput} );
   };
 
   const deleteHandler = (e) => {

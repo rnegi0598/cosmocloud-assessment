@@ -16,7 +16,7 @@ const Interface = () => {
     addData("");
   };
 
-  console.log(interfaceData);
+  // console.log(interfaceData);
   
   return (
     <div className="interfaceWrapper">
