@@ -13,12 +13,11 @@ export const ACTIONS = {
 };
 
 // reducers to handle actions
-export const reducer = (state, action) => {
+export const reducer = (draft, action) => {
   switch (action.type) {
     case ACTIONS.UPDATE_DATA: {
       let { id, field, type, required } = action.dataToUpdate;
-      const data = state.interfaceData;
-      let requiredField = data;
+      let requiredField = draft.interfaceData;
       //find the field with the given id
       while (id.length >= 1) {
         let ind = Number(id[0]);
@@ -31,16 +30,11 @@ export const reducer = (state, action) => {
       requiredField.required = required;
       requiredField.children =
         type === "object" ? requiredField.children || [] : null;
-      return {
-        ...state,
-        interfaceData: data,
-      };
+      return draft;
     }
     case ACTIONS.ADD_DATA: {
       let id = action.id;
-
-      const data = state.interfaceData;
-      let requiredField = data;
+      let requiredField = draft.interfaceData;
       //find the field with given ind
       while (id.length >= 1) {
         let ind = Number(id[0]);
@@ -57,15 +51,11 @@ export const reducer = (state, action) => {
         children: null,
       };
       requiredField.children.push(child);
-
-      return {
-        interfaceData: data,
-        currentEdit: child.id,
-      };
+      draft.currentEdit=child.id;
+      return draft;
     }
     case ACTIONS.DELETE_DATA: {
-      const data = state.interfaceData;
-      let requiredField = data;
+      let requiredField = draft.interfaceData;
       ////we have id as action.id .parentId= id.slice(0,-1);
       let parentId = action.id.slice(0, -1);
       //find the parent object with given ind
@@ -83,19 +73,14 @@ export const reducer = (state, action) => {
         }
       });
       requiredField.children = newChildren;
-      return {
-        ...state,
-        interfaceData: data,
-      };
+      return draft;
     }
     case ACTIONS.SET_CURRENT_EDIT: {
       let id = action.id;
-      return {
-        ...state,
-        currentEdit: id,
-      };
+      draft.currentEdit=id;
+      return draft;
     }
     default:
-      return state;
+      return draft;
   }
 };

@@ -1,9 +1,11 @@
 import React from "react";
-import { useReducer } from "react";
+// import { useReducer } from "react";
+import { useImmerReducer } from 'use-immer';
+
 import { initialState, reducer, ACTIONS } from "../reducer/interfaceReducer";
 export const InterfaceContext = React.createContext();
 export const InterfaceProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useImmerReducer(reducer, initialState);
 
   const value = {
     interfaceData: state.interfaceData,
