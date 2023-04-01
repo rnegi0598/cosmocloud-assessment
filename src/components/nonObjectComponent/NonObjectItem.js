@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { InterfaceContext } from "../../context/InterfaceProvider";
 //styles
 import "./NonObjectItem.scss";
@@ -19,8 +19,18 @@ const NonObjectItem = ({ item }) => {
   const [checkboxInput, setCheckBox] = useState(required);
   const { updateData, addData, deleteData, currentEdit, setCurrentEdit } = useContext(InterfaceContext);
 
+ 
+  useEffect(()=>{
+    //on changing the field without save reset the data ,to avoid this user must click save to update the data
+    setField(field);
+    setMenu(type);
+    setCheckBox(required);
+
+  },[currentEdit]);
+
   const clickHandler = (e) => {
     setCurrentEdit(id);
+    
   };
 
   const submitHandler = (e) => {

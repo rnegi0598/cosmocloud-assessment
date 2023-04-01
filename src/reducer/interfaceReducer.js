@@ -27,13 +27,14 @@ export const reducer = (draft, action) => {
       //update the data
       requiredField.field = field;
       requiredField.type = type;
-      requiredField.required = required;
+      requiredField.required = required || false;
       requiredField.children =
         type === "object" ? requiredField.children || [] : null;
       return draft;
     }
     case ACTIONS.ADD_DATA: {
       let id = action.id;
+      const parentId=id;
       let requiredField = draft.interfaceData;
       //find the field with given ind
       while (id.length >= 1) {
@@ -43,6 +44,13 @@ export const reducer = (draft, action) => {
       }
       //add children to obj
       const childrenLength = requiredField.children.length;
+      //reset the id of all children to avoid duplication
+      requiredField.children=requiredField.children.map((child,ind)=>{
+        return {
+          ...child,
+          id:parentId+ind,
+        }
+      });
       let child = {
         id: action.id + `${childrenLength}`,
         field: "addName",
@@ -65,14 +73,22 @@ export const reducer = (draft, action) => {
         parentId = parentId.slice(1);
       }
       //remove the child with given id
-      let newChildren = requiredField.children.filter((child) => {
+      requiredField.children = requiredField.children.filter((child) => {
         if (child.id !== action.id) {
           return true;
         } else {
           return false;
         }
       });
-      requiredField.children = newChildren;
+      //reset the children id after deletion to avoid duplication
+      requiredField.children=requiredField.children.map((child,ind)=>{
+        return {
+          ...child,
+          id:action.id.slice(0,-1)+ind
+        }
+      })
+      draft.currentEdit="";
+       
       return draft;
     }
     case ACTIONS.SET_CURRENT_EDIT: {
